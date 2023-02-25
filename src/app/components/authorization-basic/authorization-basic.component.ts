@@ -27,7 +27,8 @@ export class AuthorizationBasicComponent {
           valid: err.error.message
         }),
         this._changDetector.markForCheck()
-      }
+      },
+      complete: () => this._router.navigate(['auto-login/logged-in'])
     }
     );
   }

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-authorization-basic-logged-in',
@@ -7,4 +8,10 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthorizationBasicLoggedInComponent {
+  constructor(private _authenticationService: AuthenticationService) {
+  }
+
+   logoutFromSession(): void {
+    this._authenticationService.logoutUser();
+  }
 }
