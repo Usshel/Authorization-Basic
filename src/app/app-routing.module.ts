@@ -17,12 +17,15 @@ import { LoginAutoChildComponent } from './components/login-auto-child/login-aut
       expectedState: false
     }
    }, 
-    { path: 'auto-login/logged-in', 
-      component: AuthorizationBasicLoggedInComponent,
+    { path: 'auto-login', 
       children:[
         {
-          path: 'Am-I-Logged',
+          path: 'am-i-logged',
           component: LoginAutoChildComponent
+        },
+        {
+          path: 'logged-in',
+          component: AuthorizationBasicLoggedInComponent
         }
       ],
       canActivate: [LoginGuard], 
