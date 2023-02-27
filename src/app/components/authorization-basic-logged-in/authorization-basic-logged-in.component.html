@@ -1,2 +1,10 @@
 You are logged in
 <button type="button" class="btn btn-primary" (click)="logoutFromSession()">logout</button>
+
+<div *ngIf="meDetails$ | async as list">
+    {{list | json}}
+</div>
+
+<div *ngIf="userData$ | async as userData">
+    <span> {{userData.accessToken}}</span>
+</div>

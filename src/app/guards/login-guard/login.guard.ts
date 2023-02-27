@@ -8,14 +8,25 @@ import { AuthenticationService } from '../../services/authentication.service';
 export class LoginGuard implements CanActivate {
   constructor(private _authenticationService: AuthenticationService, private _router: Router) {
   }
-
+  
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean | UrlTree> {
-    return this._authenticationService.loggedIn$.pipe(
+    return this._authenticationService.userCredentials$.pipe(
       map((isLoggedIn) => { 
-        return isLoggedIn === route.data['expectedState'] 
+        return !isLoggedIn?.accessToken
         ? true
         : this._router.parseUrl(route.data['redirectUrl']) })
     )
   }
+
+
+  // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
+  //   Observable<boolean | UrlTree> {
+  //   return this._authenticationService.loggedIn$.pipe(
+  //     map((isLoggedIn) => { 
+  //       return isLoggedIn === route.data['expectedState'] 
+  //       ? true
+  //       : this._router.parseUrl(route.data['redirectUrl']) })
+  //   )
+  // }
 }

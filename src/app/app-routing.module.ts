@@ -6,6 +6,7 @@ import { AuthorizationBasicComponentModule } from './components/authorization-ba
 import { AuthorizationBasicLoggedInComponentModule } from './components/authorization-basic-logged-in/authorization-basic-logged-in.component-module';
 import { LoginGuard } from './guards/login-guard/login.guard';
 import { LoginAutoChildComponent } from './components/login-auto-child/login-auto-child.component';
+import { LoggedInGuard } from './guards/login-guard/logged-in.guard';
 
 @NgModule({
   imports: [RouterModule.forRoot([
@@ -14,7 +15,7 @@ import { LoginAutoChildComponent } from './components/login-auto-child/login-aut
     canActivate: [LoginGuard],
     data: {
       redirectUrl: 'auto-login/logged-in',
-      expectedState: false
+      expectedState: null
     }
    }, 
     { path: 'auto-login', 
@@ -28,7 +29,7 @@ import { LoginAutoChildComponent } from './components/login-auto-child/login-aut
           component: AuthorizationBasicLoggedInComponent
         }
       ],
-      canActivate: [LoginGuard], 
+      canActivate: [LoggedInGuard], 
       data: {
         redirectUrl:'auto-login/login',
         expectedState: true
